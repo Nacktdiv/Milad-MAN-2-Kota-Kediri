@@ -6,11 +6,19 @@ const DB_NAME = process.env.DB_NAME || 'miladmantsani';
 const DB_USER = process.env.DB_USER || 'root';
 const DB_PASS = process.env.DB_PASS || '';
 const DB_HOST = process.env.DB_HOST || '127.0.0.1'
+const DB_PORT = process.env.DB_PORT || '3306'
 
 const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASS, {
     host: DB_HOST,
+    port: DB_PORT,
     dialect: 'mysql', // Tentukan dialek database
     logging: false, // Set ke true jika Anda ingin melihat query SQL yang dijalankan Sequelize
+    dialectOptions: { // Tambahkan jika pada saat production menyesuaikan ssl dan sertifikat penyedia
+        ssl: {
+            require: true,
+            rejectUnauthorized: false // Wajib ditambahkan agar tidak error sertifikat di Aiven
+        }
+    },
     pool: { // Pengaturan Pool Koneksi (Opsional, tapi disarankan untuk aplikasi Express)
         max: 5,
         min: 0,
@@ -21,7 +29,11 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASS, {
 
 async function connectDB() {
     try {
+        if (!DB_HOST || !DB_NAME || !DB_PASS || !DB_PORT || !DB_USER) {
+            throw new Error("Variabel di env ada yang kosong! Cek file .env kamu.");
+        }
         await sequelize.authenticate();
+        sequelize.sync({ alter: true }); 
         console.log('✅ Koneksi ke database berhasil.');
     } catch (error) {
         console.error('❌ Gagal terhubung ke database:', error.message);
@@ -29,4 +41,4 @@ async function connectDB() {
     }
 }
 
-module.exports = {sequelize, DataTypes, connectDB};
+module.exports = {sequelize, connectDB, DataTypes};

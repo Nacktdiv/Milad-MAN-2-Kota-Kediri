@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const path = require('path')
 
 // Required another files
-const {sequelize, DataTypes, connectDB} = require('./config/mysql');
+const {connectDB} = require('./config/mysql');
 const {authMiddleware, logout} = require('./middleware/auth');
 const checkRoleMiddleware = require('./middleware/checkRole');
 const uploadBuktiBayar = require('./middleware/multer')
@@ -32,6 +32,8 @@ env.config()
 
 app.use(cookieParser());
 
+// Only Development
+
 const options = {
     origin: process.env.CORS_ORIGIN || 'http://localhost:5173', 
     
@@ -48,7 +50,6 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, "public")))
 
 connectDB()
-// sequelize.sync({ alter: true }); 
 
 
 // Routes Sample
