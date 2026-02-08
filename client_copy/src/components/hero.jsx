@@ -157,6 +157,11 @@ function Hero () {
                         <img src={icedSpike2} alt="" className="w-32 h-auto -ml-3" />
                         <img src={icedSpike2} alt="" className="w-32 h-auto -ml-3" />
                         <img src={icedSpike2} alt="" className="w-32 h-auto -ml-3" />
+                        <img src={icedSpike2} alt="" className="w-32 h-auto -ml-3" />
+                        <img src={icedSpike2} alt="" className="w-32 h-auto -ml-3" />
+                        <img src={icedSpike2} alt="" className="w-32 h-auto -ml-3" />
+                        <img src={icedSpike2} alt="" className="w-32 h-auto -ml-3" />
+                        <img src={icedSpike2} alt="" className="w-32 h-auto -ml-3" />
                         {/* Bisa nambah lagi atau repeat */}
                     </div>
                     <img src={icedSpike} alt="" className="w-32 h-auto scale-x-[-1]"/>

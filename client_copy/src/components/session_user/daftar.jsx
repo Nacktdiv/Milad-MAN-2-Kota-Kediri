@@ -12,6 +12,7 @@ import Pembayaran from './pembayaran';
 
 const Daftar = () => {
     const { pendaftaran, user, event: listEvent, setPendaftaran } = useAuth()
+    console.log(pendaftaran)
 
     // State untuk Form (Jika pendaftaran kosong)
     const [formData, setFormData] = useState({

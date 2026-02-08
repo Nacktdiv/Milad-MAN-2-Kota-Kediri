@@ -48,7 +48,7 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, "public")))
 
 connectDB()
-// sequelize.sync({ alter: true }); 
+sequelize.sync({ alter: true }); 
 
 // END Initialize Origins
 

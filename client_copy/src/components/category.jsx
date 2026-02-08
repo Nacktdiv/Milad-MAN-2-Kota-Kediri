@@ -1,6 +1,6 @@
 import {useRef} from 'react';
 
-import KepalaBaja from '../assets/Kepala-baja.webp'
+import KepalaBaja from '../assets/kepala-baja.webp'
 import kepalaExcited from '../assets/kepala-excited.webp'
 
 import useIntersectionObserver from './intersectionObserver';

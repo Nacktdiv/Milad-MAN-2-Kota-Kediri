@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
     const [pembayaran, setPembayaran] = useState(null)
     const [loading, setLoading] = useState(true);
 
+
     const CheckIsLoggedIn = async () => {
         try {
             let role = await checkRole()
@@ -29,9 +30,11 @@ export const AuthProvider = ({ children }) => {
                 const data = await getPesertaData();
                 setUser(data?.payload?.data[1]);
                 setEvent(data?.payload?.data[0])
-                if (typeof data?.payload?.data[1].pendaftaran?.nama_peserta === "string"){
+                console.log(data)
+                if (typeof data?.payload?.data[1].pendaftaran?.nama_peserta){
+                    console.log("true")
                     let pendaftaranRaw = data?.payload?.data[1].pendaftaran
-                    const nama_peserta = JSON.parse(data?.payload?.data[1].pendaftaran?.nama_peserta)
+                    const nama_peserta = data?.payload?.data[1].pendaftaran?.nama_peserta
                     pendaftaranRaw.nama_peserta = nama_peserta
                     setPendaftaran(pendaftaranRaw)
                     setPembayaran(pendaftaranRaw.pembayaran)
