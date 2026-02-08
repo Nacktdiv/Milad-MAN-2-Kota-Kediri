@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-# Ini membantu Google menemukan semua halaman lomba kamu sekaligus
-Sitemap: http://localhost:5173/sitemap.xml

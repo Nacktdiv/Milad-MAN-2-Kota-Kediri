@@ -48,9 +48,8 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, "public")))
 
 connectDB()
-sequelize.sync({ alter: true }); 
+// sequelize.sync({ alter: true }); 
 
-// END Initialize Origins
 
 // Routes Sample
 app.post('/register', (req,res) => {
@@ -151,6 +150,17 @@ app.patch('/admin/pembayaran/updatestatus', authMiddleware, checkRoleMiddleware(
 })
 
 app.post('/logout', authMiddleware, logout);
+
+
+// Deploy Configuration
+const __dist = path.join(__dirname, '/client/dist')
+
+app.use(express.static(__dist))
+
+app.get('*any', (req, res) => {
+    res.sendFile(path.join(__dist, '/index.html' ))
+})
+// END Deploy Configuration
 
 // END Routes Sample
 
