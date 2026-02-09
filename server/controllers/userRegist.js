@@ -1,6 +1,6 @@
 const {user} = require('../models/setup'); 
 const resFormat = require('../models/resformat');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const createUser = async (res, body) => {
     const { email, password, nama_lengkap, nomor_telepon} = body;
