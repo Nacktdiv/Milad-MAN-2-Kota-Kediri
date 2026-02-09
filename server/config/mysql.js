@@ -1,3 +1,4 @@
+const mysql2 = require('mysql2')
 const { Sequelize, DataTypes } = require('sequelize');
 const env = require('dotenv');
 env.config();
@@ -9,9 +10,10 @@ const DB_HOST = process.env.DB_HOST || '127.0.0.1'
 const DB_PORT = process.env.DB_PORT || '3306'
 
 const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASS, {
+    dialect:'mysql',
+    dialectModule: mysql2,
     host: DB_HOST,
     port: DB_PORT,
-    dialect: 'mysql', // Tentukan dialek database
     logging: false, // Set ke true jika Anda ingin melihat query SQL yang dijalankan Sequelize
     dialectOptions: { // Tambahkan jika pada saat production menyesuaikan ssl dan sertifikat penyedia
         ssl: {
