@@ -4,7 +4,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
 const path = require('path')
-
+require('mysql2'); 
 // Required another files
 const {connectDB} = require('./config/mysql');
 const {authMiddleware, logout} = require('./middleware/auth');

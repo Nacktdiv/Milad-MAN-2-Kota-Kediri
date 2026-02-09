@@ -35,7 +35,9 @@ async function connectDB() {
             throw new Error("Variabel di env ada yang kosong! Cek file .env kamu.");
         }
         await sequelize.authenticate();
-        sequelize.sync({ alter: true }); 
+        if (process.env.NODE_ENV !== 'production') {
+            await sequelize.sync({ alter: true });
+        }
         console.log('✅ Koneksi ke database berhasil.');
     } catch (error) {
         console.error('❌ Gagal terhubung ke database:', error.message);
